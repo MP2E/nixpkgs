@@ -10522,7 +10522,7 @@ in
   gsettings-qt = libsForQt5.callPackage ../development/libraries/gsettings-qt { };
 
   gst_all_1 = recurseIntoAttrs(callPackage ../development/libraries/gstreamer {
-    callPackage = pkgs.newScope (pkgs // { libav = pkgs.ffmpeg; });
+    callPackage = pkgs.newScope (pkgs // { libav = pkgs.ffmpeg_3; });
   });
 
   gstreamer = callPackage ../development/libraries/gstreamer/legacy/gstreamer {
@@ -14357,6 +14357,12 @@ in
     inherit (darwin) cctools developer_cmds;
     inherit (darwin.apple_sdk.frameworks) CoreServices;
     boost = boost159;
+  };
+
+  mysql80 = callPackage ../servers/sql/mysql/8.0.x.nix {
+    inherit (darwin) cctools developer_cmds;
+    inherit (darwin.apple_sdk.frameworks) CoreServices;
+    boost = boost167;
   };
 
   mysql_jdbc = callPackage ../servers/sql/mysql/jdbc { };
@@ -18950,6 +18956,7 @@ in
 
   mplayer = callPackage ../applications/video/mplayer ({
     libdvdnav = libdvdnav_4_2_1;
+    ffmpeg = ffmpeg_3;
   } // (config.mplayer or {}));
 
   MPlayerPlugin = browser:
