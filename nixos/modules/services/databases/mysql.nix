@@ -318,7 +318,7 @@ in
             if ! test -e ${cfg.dataDir}/mysql; then
                 mkdir -m 0700 -p ${cfg.dataDir}
                 chown -R ${cfg.user} ${cfg.dataDir}
-                ${mysql}/bin/mysqld --defaults-extra-file=${myCnf} --initialize ${mysqldOptions}
+                ${mysql}/bin/mysqld --defaults-file=/etc/my.cnf --initialize ${mysqldOptions}
                 touch /tmp/mysql_init
             fi
 
