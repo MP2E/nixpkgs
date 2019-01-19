@@ -11465,7 +11465,7 @@ in
   libmysofa = callPackage ../development/libraries/audio/libmysofa { };
 
   libmysqlconnectorcpp = callPackage ../development/libraries/libmysqlconnectorcpp {
-    mysql = mysql57;
+    mysql = mysql80;
   };
 
   libnatpmp = callPackage ../development/libraries/libnatpmp { };
@@ -23358,7 +23358,7 @@ in
 
   mnemonicode = callPackage ../misc/mnemonicode { };
 
-  mysql-workbench = callPackage ../applications/misc/mysql-workbench (let mysql = mysql57; in {
+  mysql-workbench = callPackage ../applications/misc/mysql-workbench (let mysql = mysql80; in {
     gdal = gdal.override {mysql = mysql // {lib = {dev = mysql;};};};
     mysql = mysql;
     pcre = pcre-cpp;

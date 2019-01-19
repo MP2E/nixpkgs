@@ -66,6 +66,8 @@ in stdenv.mkDerivation rec {
     "-DMySQL_CONFIG_PATH=${mysql}/bin/mysql_config"
     "-DIODBC_CONFIG_PATH=${libiodbc}/bin/iodbc-config"
     "-DWITH_ANTLR_JAR=${antlr4_7.jarLocation}"
+    "-DMySQLCppConn_INCLUDE_DIR=${libmysqlconnectorcpp}/include/jdbc"
+    "-DMySQLCppConn_LIBARY=${libmysqlconnectorcpp}/lib/libmysqlcppconn.so"
   ];
 
   # There is already an executable and a wrapper in bindir

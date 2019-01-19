@@ -28,8 +28,6 @@ self = stdenv.mkDerivation rec {
 
   enableParallelBuilding = true;
 
-  outputs = [ "out" "static" ];
-
   cmakeFlags = [
     "-DCMAKE_SKIP_BUILD_RPATH=OFF" # To run libmysql/libmysql_api_test during build.
     "-DWITH_SSL=yes"
@@ -66,7 +64,7 @@ self = stdenv.mkDerivation rec {
     sed -i -e "s|/usr/bin/libtool|libtool|" cmake/merge_archives.cmake.in
   '';
   postInstall = ''
-    moveToOutput "lib/*.a" $static
+    ln -s libmysqlclient.a $out/lib/libmysqlclient_r.a
     ln -s libmysqlclient${stdenv.hostPlatform.extensions.sharedLibrary} $out/lib/libmysqlclient_r${stdenv.hostPlatform.extensions.sharedLibrary}
   '';
 
