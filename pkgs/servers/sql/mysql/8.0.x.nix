@@ -7,11 +7,11 @@
 let
 self = stdenv.mkDerivation rec {
   name = "mysql-${version}";
-  version = "8.0.12";
+  version = "8.0.15";
 
   src = fetchurl {
     url = "mirror://mysql/MySQL-8.0/${name}.tar.gz";
-    sha256 = "080vvp75n4sz84i5ss6yp4q36cnsvr8p7pyn535n1g2dhch6xwb9";
+    sha256 = "0pl2cjzgfqz5vb8yafxm42nd8qa5ns9xpi2w77fyjgpjq8nwl6xv";
   };
 
   patches = [ ./disable_abi_check.patch ];
@@ -66,6 +66,7 @@ self = stdenv.mkDerivation rec {
   postInstall = ''
     ln -s libmysqlclient.a $out/lib/libmysqlclient_r.a
     ln -s libmysqlclient${stdenv.hostPlatform.extensions.sharedLibrary} $out/lib/libmysqlclient_r${stdenv.hostPlatform.extensions.sharedLibrary}
+    chmod 755 $out
   '';
 
   passthru = {
