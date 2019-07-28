@@ -2,11 +2,11 @@
 
 stdenv.mkDerivation rec {
   name = "libmysqlconnectorcpp-${version}";
-  version = "8.0.15";
+  version = "8.0.16";
 
   src = fetchurl {
     url = "https://cdn.mysql.com/Downloads/Connector-C++/mysql-connector-c++-${version}-src.tar.gz";
-    sha256 = "10bvabmk4wh4a082a4c43fz6hhywk5qwlq14gg79xs6hwyz9rr5p";
+    sha256 = "1447hfwc8rnizxc20jgrwmg8mdj90zljs694w96vgsf7sj28li66";
   };
 
   buildInputs = [ cmake boost mysql openssl zlib ];

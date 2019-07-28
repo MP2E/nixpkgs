@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, cmake, bison
+{ stdenv, fetchurl, pkgconfig, cmake, bison
 , boost, libedit, libevent, lz4, libtirpc, ncurses, openssl, protobuf, readline, zlib
 , perl, cctools, CoreServices, developer_cmds }:
 
@@ -7,11 +7,11 @@
 let
 self = stdenv.mkDerivation rec {
   name = "mysql-${version}";
-  version = "8.0.15";
+  version = "8.0.16";
 
   src = fetchurl {
     url = "mirror://mysql/MySQL-8.0/${name}.tar.gz";
-    sha256 = "0pl2cjzgfqz5vb8yafxm42nd8qa5ns9xpi2w77fyjgpjq8nwl6xv";
+    sha256 = "1spa6lkvgww4si0yjs0w4cpyr99gmmvvidsp53gbp2yw42cyi7wd";
   };
 
   patches = [ ./disable_abi_check.patch ];
@@ -21,7 +21,7 @@ self = stdenv.mkDerivation rec {
     export PATH=$PATH:$TMPDIR
   '';
 
-  nativeBuildInputs = [ cmake bison ];
+  nativeBuildInputs = [ pkgconfig cmake bison ];
 
   buildInputs = [ boost libedit libevent libtirpc lz4 ncurses openssl protobuf readline zlib ]
      ++ stdenv.lib.optionals stdenv.isDarwin [ perl cctools CoreServices developer_cmds ];
